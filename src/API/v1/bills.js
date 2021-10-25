@@ -13,9 +13,9 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id;
     const sql = `SELECT * FROM bills WHERE group_id = ?`
-    const dbResult = await dbAction(sql, id);
+    const dbResult = await dbAction(sql, [id]);
     if (dbResult === false) {
         return res.status(400).send({ error: 'Something went wrong' });
     }
