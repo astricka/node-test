@@ -12,8 +12,12 @@ app.use(morgan('common'));
 app.use(cors());
 app.use(express.json());
 
+const userRoutes = require('./API/v1/users');
+
 app.get('/', (req, res) => {
    res.send('Hello express');
 });
+
+app.use('/users', userRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
