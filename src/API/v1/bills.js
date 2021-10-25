@@ -21,4 +21,5 @@ router.get('/:id', async (req, res) => {
     }
     res.send({msg: 'Success', dbResult });
 });
+
 module.exports = router;
