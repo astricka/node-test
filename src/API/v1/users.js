@@ -2,7 +2,7 @@ const express = require('express');
 const joi = require('joi');
 const bcrypt = require('bcryptjs');
 const { dbAction } = require("../../utilities/dbHelper");
-const { hashValue } = require('../../utilities/hashHelper');
+const { hashValue, verifyHash } = require('../../utilities/hashHelper');
 
 const router = express.Router();
 
@@ -32,6 +32,23 @@ router.post('/register', async (req, res) => {
         return res.status(500).json({ error: 'something went wrong' });
     }
     res.json({ msg: 'success', dbResult });
+});
+
+router.post('/login', async (req, res) => {
+    let userData = req.body;
+
+    const sql = `SELECT * FROM users WHERE email = ?`;
+    const dbResult = await dbAction(sql, [userData.email]);
+
+    if (dbResult.length !== 1) {
+        return res.status(400).send({ error: 'Invalid credentials' });
+    }
+
+    if (!verifyHash(req.body.password, dbResult[0].password)) {
+        return res.status(400).send({ error: 'bad credentials' });
+    }
+
+    res.json({ msg: 'login success', dbResult });
 });
 
 module.exports = router;
