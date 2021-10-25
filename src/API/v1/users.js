@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     let userData = req.body;
-
+    console.log(req.body);
     try {
         userData = await loginSchema.validateAsync(userData);
     } catch (error) {
@@ -61,7 +61,11 @@ router.post('/login', async (req, res) => {
     if (!verifyHash(req.body.password, dbResult[0].password)) {
         return res.status(400).send({ error: 'bad credentials' });
     }
-    res.json({ msg: 'login success', dbResult, token });
+    const loggedInUser = {
+        email: req.body.email,
+        token: token
+    }
+    res.json({ msg: 'login success', loggedInUser });
 });
 
 module.exports = router;

@@ -12,7 +12,7 @@ formEl.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify(Object.fromEntries(formData))
     });
-    const data = resp.json();
+    const data = await resp.json();
     if (data.msg === 'success') {
         location.href = "login.html";
     }
