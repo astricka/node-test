@@ -9,8 +9,10 @@ const dbConfig = {
 };
 
 const port = process.env.SERVER_PORT;
+const jwtSecret = process.env.ACCESS_TOKEN_SECRET;
 
 module.exports = {
     dbConfig,
-    port
+    port,
+    jwtSecret
 };
