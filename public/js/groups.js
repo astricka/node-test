@@ -28,7 +28,7 @@ function generateGroups(arr, dest) {
 groupFormEl.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(groupFormEl);
-    const resp = await fetch(`${URL}/groups`, {
+    const resp = await fetch(`${URL}/accounts`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
