@@ -3,8 +3,13 @@ const { dbAction } = require("../../utilities/dbHelper");
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const data = req.body;
-    const sql = 'INSERT INTO bills(group_id, amount, description) VALUES(?,?,?)'
+    const data = {
+        group_id: req.body.group_id,
+        amount: req.body.amount,
+        description: req.body.description
+    };
+    console.log(data);
+    const sql = `INSERT INTO bills(group_id, amount, description) VALUES(?,?,?)`
     const dbResult = await dbAction(sql, Object.values(data));
     if (dbResult === false) {
         return res.status(500).send({ error: 'something went wrong' });

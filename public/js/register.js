@@ -1,7 +1,6 @@
 const URL = 'http://localhost:3000/users';
 
 const formEl = document.getElementById('form-register');
-const errorEel = document.querySelector('.errorEl');
 
 formEl.addEventListener('submit', async (e) => {
     e.preventDefault();

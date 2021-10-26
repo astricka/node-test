@@ -2,27 +2,30 @@ const URL = 'http://localhost:3000';
 const billsContainerEl = document.querySelector('.table-container');
 const billFormEl = document.getElementById('form-bill');
 
-async function addBill() {
-    const resp = fetch(`${URL}/bills`, {
-
+billFormEl.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const formData = new FormData(billFormEl);
+    const resp = await fetch(`${URL}/bills`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
     });
-}
+    const data = await resp.json();
+    console.log(data);
+});
 
 async function fetchData() {
     const resp = await fetch(`${URL}/bills/`+groupsId);
     const data = await resp.json();
-    console.log(data.dbResult[0]);
     return data.dbResult;
 }
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
-console.log('params', params);
-
 const groupsId = params.groupsId;
-
-console.log('groupId', groupsId);
 
 function generateBills(arr, dest) {
 
