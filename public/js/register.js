@@ -16,14 +16,10 @@ formEl.addEventListener('submit', async (e) => {
     if (data.msg === 'success') {
         location.href = "login.html";
     }
-    if (data.error === 'Invalid credentials') {
-        const errorEl = document.createElement("h2");
-        errorEl.innerText = 'Email exists';
-        document.querySelector('.errorEl').appendChild(errorEl);
-    }
+
     if (data.msg === 'bad pass') {
         const errorEl = document.createElement("h2");
-        errorEl.innerText = 'Bad credentials';
+        errorEl.innerText = `Pass don't match`;
         document.querySelector('.errorEl').appendChild(errorEl);
     }
     console.log(data);
