@@ -8,9 +8,9 @@ router.post('/', isLoggedIn, async (req, res) => {
         id: req.body,
         userId: req.user.id
     }
-    console.log('id:',data.id.group_id);
+    console.log('id:',data.id.group);
     const sql = `INSERT INTO accounts(group_id, user_id) VALUES(?,?)`
-    const dbResult = await dbAction(sql, [data.id.group_id, data.userId]);
+    const dbResult = await dbAction(sql, [data.id.group, data.userId]);
     if (dbResult === false) {
         return res.status(500).send({ error: 'something went wrong' });
     }

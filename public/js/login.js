@@ -17,6 +17,11 @@ loginFormEl.addEventListener('submit', async (e) => {
         localStorage.setItem('loggedInUserEmail', data.loggedInUser.email);
         location.href = "groups.html";
     }
+    if (data.error === 'bad credentials') {
+        const errorEl = document.createElement("h2");
+        errorEl.innerText = `Bad credentials`;
+        document.querySelector('.errorEl').appendChild(errorEl);
+    }
     console.log(data);
 })
 

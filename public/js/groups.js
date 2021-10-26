@@ -8,7 +8,7 @@ async function fetchData() {
     const resp = await fetch(`${URL}/accounts`, {
         method: "GET",
         headers: {
-            Authorizations: `Bearer ${token}`,
+            authorization: `Bearer ${token}`,
         },
     });
     const data = await resp.json();
@@ -27,15 +27,20 @@ function generateGroups(arr, dest) {
 
 groupFormEl.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('loggedInUserToken');
     const formData = new FormData(groupFormEl);
     const resp = await fetch(`${URL}/accounts`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(Object.fromEntries(formData))
     });
     const data = await resp.json();
+    if (data.msg === 'Success') {
+        location.reload();
+    }
     console.log(data);
 });
 
