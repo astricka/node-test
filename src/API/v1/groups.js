@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     }
 
     const sql = 'INSERT INTO groups(name) VALUES(?)';
-    const dbResult = await dbAction(sql, [newGroup.name]);
+    const dbResult = await dbAction(sql, [req.body]);
     if (dbResult === false) {
         return res.status(500).send({ error: 'something went wrong' });
     }
