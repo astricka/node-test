@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="styles/bills.css">
     <script src="js/bills.js" defer></script>
 </head>
 <body>
+<div class="headings">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Ffull%2F10-109089_google-logo-png-transparent-google-logo-round-png.png&f=1&nofb=1" alt="">
+    <h2>Split bill</h2>
+</div>
 
+<div class="container">
+    <table >
+        <tr class="headings-container">
+            <th>ID</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
+    </table>
+    <table class="table-container">
+
+    </table>
+
+    <div class="addBill-div">
+        <form class="addBill-container" id="form-bill">
+            <h3>Add bill</h3>
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+            <button id="addBill" type="submit">Add</button>
+        </form>
+</div>
 </body>
 </html>

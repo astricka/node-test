@@ -1,0 +1,71 @@
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.headings {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+th, td {
+    padding: 10px;
+}
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+tr:nth-child(2) {
+    background-color: #d3d1d1;
+}
+
+.table-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.headings-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    border: 1px solid #a9a9a9;
+    padding: 5px 50px;
+    border-radius: 5px;
+}
+
+input, label, button, h3 {
+    margin: 5px;
+}
+
+button {
+    width: 5rem;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.addBill-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}

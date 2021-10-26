@@ -8,7 +8,7 @@ const { jwtSecret } = require('../../config');
 const router = express.Router();
 
 const userSchema = joi.object({
-    full_name: joi.string().alphanum().min(5).max(100).required(),
+    full_name: joi.string().min(5).max(100).required(),
     email: joi.string().email().trim().lowercase().required(),
     password: joi.string().required(),
 });
@@ -16,9 +16,13 @@ const userSchema = joi.object({
 const loginSchema = joi.object({
     email: joi.string().email().trim().lowercase().required(),
     password: joi.string().required(),
+    repeat_password: joi.ref('password'),
 });
 
 router.post('/register', async (req, res) => {
+    if (req.body.password !== req.body.repeatPassword) {
+        return res.status(400).send( { msg: 'bad pass' });
+    }
     let userData = {
         full_name: req.body.name,
         email: req.body.email,
@@ -35,7 +39,7 @@ router.post('/register', async (req, res) => {
     const sql = `INSERT INTO users(full_name, email, password) VALUES(?,?,?)`;
     const dbResult = await dbAction(sql, [userData.full_name, userData.email, userData.password]);
     if (dbResult === false) {
-        return res.status(500).json({ error: 'something went wrong' });
+        return res.status(500).json({msg: 'error', error: 'something went wrong' });
     }
     res.json({ msg: 'success', dbResult });
 });

@@ -16,10 +16,10 @@ async function fetchData() {
 
 }
 
-function generatePosts(arr, dest) {
+function generateGroups(arr, dest) {
     dest.innerHTML = arr.map(group => `
-    <div ${group.id} class="card">
-        <h3>ID: ${group.id}</h3>
+    <div class="card">
+        <h3><a href="bills.html?groupsId=${group.id}">ID: ${group.id}</h3>
         <h6>${group.name}</h6>
     </div>
     `).join('');
@@ -41,7 +41,7 @@ groupFormEl.addEventListener('submit', async (e) => {
 
 async function init() {
     const dataArr = await fetchData();
-    generatePosts(dataArr, groupsContainer);
+    generateGroups(dataArr, groupsContainer);
 }
 
 init();
